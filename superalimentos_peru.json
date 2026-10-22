@@ -1,0 +1,1114 @@
+[
+  {
+    "id": 1,
+    "nombre": "Maíz Morado",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Ica",
+      "Lima",
+      "Lambayeque"
+    ],
+    "descripcion": "Grano endémico de maíz (Zea mays) de intenso color violeta, base tradicional de la chicha morada y de la gastronomía limeña.",
+    "beneficios": [
+      "Potente antioxidante por sus antocianinas",
+      "Protege la salud cardiovascular",
+      "Apoya la salud hepática y digestiva"
+    ],
+    "nutricion_100g": {
+      "calorias": 365,
+      "proteinas": 9.4,
+      "carbohidratos": 74.0,
+      "grasas": 3.7
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Pisco",
+    "categoria": "Bebida",
+    "region": "Costa",
+    "departamentos": [
+      "Ica",
+      "Arequipa",
+      "Lambayeque"
+    ],
+    "descripcion": "Aguardiente de uva destilado en los valles de la costa peruana, bebida bandera y Denominación de Origen protegida.",
+    "beneficios": [
+      "Bebida espirituosa sin azúcares añadidos",
+      "Rica en polifenoles y antioxidantes de la uva",
+      "Se consume tradicionalmente con una gota de amargo"
+    ],
+    "nutricion_100g": {
+      "calorias": 233,
+      "proteinas": 0.0,
+      "carbohidratos": 0.0,
+      "grasas": 0.0
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Uva de Mesa",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Ica",
+      "La Libertad"
+    ],
+    "descripcion": "Uva de exportación (Thompson Seedless, Red Globe) cultivada en los valles irrigados de Ica y La Libertad.",
+    "beneficios": [
+      "Alta en antioxidantes y resveratrol",
+      "Mejora la salud cardiovascular",
+      "Fuente de vitaminas C y K"
+    ],
+    "nutricion_100g": {
+      "calorias": 69,
+      "proteinas": 0.7,
+      "carbohidratos": 18.1,
+      "grasas": 0.2
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Palta",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lambayeque",
+      "Piura"
+    ],
+    "descripcion": "Palta Hass y Fuerte cultivada en el valle de Chicama y Piura; los valles norteños son líderes nacionales en producción.",
+    "beneficios": [
+      "Grasas monoinsaturadas saludables",
+      "Mejora la absorción de nutrientes liposolubles",
+      "Alta en potasio y fibra dietética"
+    ],
+    "nutricion_100g": {
+      "calorias": 160,
+      "proteinas": 2.0,
+      "carbohidratos": 8.5,
+      "grasas": 14.7
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Cebada de Chicha",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lambayeque",
+      "Piura"
+    ],
+    "descripcion": "Cebada malteada tradicionalmente en los valles costeros para producir la chicha de jora, bebida ancestral.",
+    "beneficios": [
+      "Rica en beta-glucano para el colesterol",
+      "Fuente de vitaminas del grupo B y selenio",
+      "Base para bebidas fermentadas tradicionales"
+    ],
+    "nutricion_100g": {
+      "calorias": 354,
+      "proteinas": 10.3,
+      "carbohidratos": 73.0,
+      "grasas": 2.3
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Pallar Lamboyaco",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "La Libertad"
+    ],
+    "descripcion": "Poroto pallar lamboyaco de Lambayeque, grano andino-costeño de alto valor proteico y sabor característico.",
+    "beneficios": [
+      "Alto contenido de proteínas vegetales",
+      "Rico en hierro y folatos",
+      "Ayuda a regular los niveles de glucosa en sangre"
+    ],
+    "nutricion_100g": {
+      "calorias": 325,
+      "proteinas": 22.0,
+      "carbohidratos": 58.0,
+      "grasas": 0.9
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "Maracuyá",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Tumbes",
+      "Piura"
+    ],
+    "descripcion": "Fruta tropical ácida cultivada en Tumbes y Piura; ingrediente esencial de la clásica limonada de maracuyá.",
+    "beneficios": [
+      "Contenido excepcional de vitamina C",
+      "Rico en betacarotenos y fibra",
+      "Propiedades antioxidantes y antiinflamatorias"
+    ],
+    "nutricion_100g": {
+      "calorias": 97,
+      "proteinas": 2.2,
+      "carbohidratos": 23.0,
+      "grasas": 0.7
+    }
+  },
+  {
+    "id": 8,
+    "nombre": "Aguaymanto",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lambayeque",
+      "La Libertad"
+    ],
+    "descripcion": "Golden berry (Physalis peruviana), cultivo andino de valles costeros con fruto dorado y sabor agridulce.",
+    "beneficios": [
+      "Alto contenido de vitamina C y antioxidantes",
+      "Rico en withanolides antiinflamatorios",
+      "Mejora la salud ósea y la visión"
+    ],
+    "nutricion_100g": {
+      "calorias": 66,
+      "proteinas": 1.2,
+      "carbohidratos": 15.0,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 9,
+    "nombre": "Lúcuma",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Piura",
+      "Ica"
+    ],
+    "descripcion": "Fruta desértica peruana endémica de los valles secos de la costa norte, conocida como el 'oro de los incas'.",
+    "beneficios": [
+      "Edulcorante natural de bajo índice glucémico",
+      "Rico en betacaroteno y vitaminas del grupo B",
+      "Aporta fibra y minerales como hierro"
+    ],
+    "nutricion_100g": {
+      "calorias": 87,
+      "proteinas": 1.5,
+      "carbohidratos": 23.0,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 10,
+    "nombre": "Tomate de Mesa",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Moquegua"
+    ],
+    "descripcion": "Moquegua es el principal valle productor de tomate de mesa del Perú, con importante exportación internacional.",
+    "beneficios": [
+      "Rico en licopeno antioxidante",
+      "Protege la salud cardiovascular",
+      "Fuente de vitamina C y potasio"
+    ],
+    "nutricion_100g": {
+      "calorias": 18,
+      "proteinas": 0.9,
+      "carbohidratos": 3.9,
+      "grasas": 0.2
+    }
+  },
+  {
+    "id": 11,
+    "nombre": "Cacao Fino de Aroma",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Piura",
+      "Tumbes"
+    ],
+    "descripcion": "Cacao fino de aroma (variedades criollas y CCN-51) de Piura y Tumbes, prestigioso en el mercado mundial.",
+    "beneficios": [
+      "Flavanoles que mejoran el estado de ánimo y cognición",
+      "Protege la salud cardiovascular",
+      "Rico en magnesio y hierro"
+    ],
+    "nutricion_100g": {
+      "calorias": 228,
+      "proteinas": 19.6,
+      "carbohidratos": 57.9,
+      "grasas": 13.7
+    }
+  },
+  {
+    "id": 12,
+    "nombre": "Camote Cremilla",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lima",
+      "Ica"
+    ],
+    "descripcion": "Camote cremilla peruano cultivado en Chincha (Lima) e Ica; tubérculo dulce clave en la gastronomía local.",
+    "beneficios": [
+      "Alto en betacarotenos y vitamina A",
+      "Buena fuente de fibra y vitamina C",
+      "Ayuda a controlar los niveles de azúcar en sangre"
+    ],
+    "nutricion_100g": {
+      "calorias": 86,
+      "proteinas": 1.6,
+      "carbohidratos": 20.0,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 13,
+    "nombre": "Chirimoya",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lima",
+      "Ica"
+    ],
+    "descripcion": "Fruta tropical andina (Annona cherimola), dulce y cremosa, cultivada en Cañete e Ica.",
+    "beneficios": [
+      "Rica en vitamina C y complejo B",
+      "Alto contenido de potasio",
+      "Antioxidante y fuente de fibra dietética"
+    ],
+    "nutricion_100g": {
+      "calorias": 70,
+      "proteinas": 1.1,
+      "carbohidratos": 16.0,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 14,
+    "nombre": "Chicha de Jora",
+    "categoria": "Bebida",
+    "region": "Costa",
+    "departamentos": [
+      "Lambayeque",
+      "Piura"
+    ],
+    "descripcion": "Bebida alcohólica ancestral fermentada de cebada malteada (jora), patrimonio cultural inmaterial de Lambayeque.",
+    "beneficios": [
+      "Fermentación natural sin azúcares añadidos",
+      "Contiene probióticos y vitaminas del grupo B",
+      "Baja en calorías y sin grasas"
+    ],
+    "nutricion_100g": {
+      "calorias": 55,
+      "proteinas": 1.0,
+      "carbohidratos": 6.0,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 15,
+    "nombre": "Linaza",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Junín",
+      "Huánuco",
+      "Lambayeque"
+    ],
+    "descripcion": "Linaza cultivada en la sierra central (Tarma) y valles irrigados; semilla omega-3 esencial para la salud cardiovascular.",
+    "beneficios": [
+      "Mejor fuente vegetal de omega-3 (ácido alfa-linolénico)",
+      "Alta en lignanos con actividad fitoestrógena",
+      "Regula el tránsito intestinal y reduce el colesterol"
+    ],
+    "nutricion_100g": {
+      "calorias": 534,
+      "proteinas": 18.3,
+      "carbohidratos": 28.9,
+      "grasas": 42.2
+    }
+  },
+  {
+    "id": 16,
+    "nombre": "Ají Panca",
+    "categoria": "Alimento",
+    "region": "Costa",
+    "departamentos": [
+      "Lima"
+    ],
+    "descripcion": "Ají peruano oscuro y aromático, nativo de la costa central de Lima, base de la sazón criolla y marinados.",
+    "beneficios": [
+      "Rico en vitamina A y compuestos antioxidantes",
+      "Propiedades antiinflamatorias",
+      "Mejora la digestión de alimentos grasos"
+    ],
+    "nutricion_100g": {
+      "calorias": 293,
+      "proteinas": 12.0,
+      "carbohidratos": 56.0,
+      "grasas": 6.0
+    }
+  },
+  {
+    "id": 17,
+    "nombre": "Quinua Real",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Puno",
+      "Ayacucho",
+      "Huancavelica",
+      "Cusco",
+      "Apurímac",
+      "Pasco"
+    ],
+    "descripcion": "Pseudo-cereal andino cultivado por los incas, con grano integral rico en todos los aminoácidos esenciales.",
+    "beneficios": [
+      "Proteína vegetal completa y de alta calidad",
+      "Naturalmente libre de gluten",
+      "Alto en hierro, magnesio y fibra"
+    ],
+    "nutricion_100g": {
+      "calorias": 368,
+      "proteinas": 14.1,
+      "carbohidratos": 64.2,
+      "grasas": 6.1
+    }
+  },
+  {
+    "id": 18,
+    "nombre": "Kañiwa",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Puno",
+      "Cusco"
+    ],
+    "descripcion": "Grano andino preincaico, pariente cercano de la quinua, cultivado en zonas altoandinas de Puno y Cusco.",
+    "beneficios": [
+      "Alto en proteínas de rápida digestión",
+      "Rico en quercetina y antioxidantes",
+      "Aporta calcio y hierro esenciales"
+    ],
+    "nutricion_100g": {
+      "calorias": 330,
+      "proteinas": 13.0,
+      "carbohidratos": 59.0,
+      "grasas": 4.0
+    }
+  },
+  {
+    "id": 19,
+    "nombre": "Kiwicha",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Junín",
+      "Cusco",
+      "Huancavelica",
+      "Ayacucho"
+    ],
+    "descripcion": "Amaranto andino (Amaranthus caudatus), grano ancestral de colores vivos cultivado en la sierra central y sur.",
+    "beneficios": [
+      "Proteína completa con lisina",
+      "Rico en antocianinas antioxidantes",
+      "Fuente de hierro y fósforo"
+    ],
+    "nutricion_100g": {
+      "calorias": 365,
+      "proteinas": 13.7,
+      "carbohidratos": 66.0,
+      "grasas": 5.9
+    }
+  },
+  {
+    "id": 20,
+    "nombre": "Maca",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cajamarca",
+      "Piura"
+    ],
+    "descripcion": "Raíz tuberosa crucífera de la puna de Cajamarca y Huancabamba (Piura), adaptógeno andino milenario.",
+    "beneficios": [
+      "Aumenta energía y resistencia física",
+      "Equilibra hormonas y fertilidad",
+      "Reduce la fatiga y el estrés"
+    ],
+    "nutricion_100g": {
+      "calorias": 325,
+      "proteinas": 14.0,
+      "carbohidratos": 71.0,
+      "grasas": 2.2
+    }
+  },
+  {
+    "id": 21,
+    "nombre": "Papa Nativa",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco",
+      "Puno",
+      "Huancavelica",
+      "Apurímac",
+      "Ayacucho",
+      "Tacna"
+    ],
+    "descripcion": "Más de 3,000 variedades de papa nativa (Solanum tuberosum) cultivadas en los Andes peruanos, desde la papa amarilla hasta la morada.",
+    "beneficios": [
+      "Fuente de vitamina C y potasio",
+      "Pulpas coloradas ricas en antocianinas",
+      "Baja en sodio y grasas"
+    ],
+    "nutricion_100g": {
+      "calorias": 77,
+      "proteinas": 2.0,
+      "carbohidratos": 17.0,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 22,
+    "nombre": "Oca",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco",
+      "Puno"
+    ],
+    "descripcion": "Tubérculo andino de sabor agridulce (Oxalis tuberosa), cultivado desde la época prehispánica en el sur andino.",
+    "beneficios": [
+      "Alto contenido de vitamina C",
+      "Fuente de potasio y antioxidantes",
+      "Fácil digestión y versátil en cocina"
+    ],
+    "nutricion_100g": {
+      "calorias": 70,
+      "proteinas": 1.2,
+      "carbohidratos": 15.6,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 23,
+    "nombre": "Ullucu",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco",
+      "Puno"
+    ],
+    "descripcion": "Tubérculo andino de color amarillo o rojizo (Ullucus tuberosus), con textura mantecosa y sabor suave.",
+    "beneficios": [
+      "Rico en vitamina C y minerales",
+      "Bajo en sodio",
+      "Excelente fuente de fibra dietética"
+    ],
+    "nutricion_100g": {
+      "calorias": 47,
+      "proteinas": 1.7,
+      "carbohidratos": 9.9,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 24,
+    "nombre": "Mashua",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco",
+      "Puno",
+      "Ayacucho"
+    ],
+    "descripcion": "Tubérculo andino picante (Tropaeolum tuberosum), cultivado en zonas frías del sur andino.",
+    "beneficios": [
+      "Alto en vitamina C",
+      "Propiedades antibacterianas y digestivas",
+      "Ayuda a limpiar vías respiratorias"
+    ],
+    "nutricion_100g": {
+      "calorias": 50,
+      "proteinas": 2.0,
+      "carbohidratos": 11.0,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 25,
+    "nombre": "Olluco",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco",
+      "Puno"
+    ],
+    "descripcion": "Tubérculo andino de pulpa blanca o amarilla (Oxalis tuberosa), cultivado desde hace más de 4,000 años.",
+    "beneficios": [
+      "Rico en vitamina C y potasio",
+      "Bajo en grasa y fácil de digestir",
+      "Aporta carbohidratos de liberación lenta"
+    ],
+    "nutricion_100g": {
+      "calorias": 55,
+      "proteinas": 1.6,
+      "carbohidratos": 12.8,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 26,
+    "nombre": "Chuño",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Puno",
+      "Cusco"
+    ],
+    "descripcion": "Papa deshidratada y congelada naturalmente por las noches en la puna, técnica ancestral de conservación.",
+    "beneficios": [
+      "Alto en proteína vegetal",
+      "Larga vida útil sin refrigeración",
+      "Bajo costo y muy energético"
+    ],
+    "nutricion_100g": {
+      "calorias": 340,
+      "proteinas": 14.0,
+      "carbohidratos": 70.0,
+      "grasas": 0.5
+    }
+  },
+  {
+    "id": 27,
+    "nombre": "Tarwi (Chocho)",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Puno",
+      "Huancavelica",
+      "Ayacucho"
+    ],
+    "descripcion": "Leguminosa andina (Lupinus mutabilis), grano rico en proteína que fue alimento sagrado de los incas.",
+    "beneficios": [
+      "Proteína vegetal de alta calidad",
+      "Alto en ácidos grasos omega-3",
+      "Efecto saciante y regulador del colesterol"
+    ],
+    "nutricion_100g": {
+      "calorias": 365,
+      "proteinas": 30.0,
+      "carbohidratos": 19.0,
+      "grasas": 21.0
+    }
+  },
+  {
+    "id": 28,
+    "nombre": "Haba Andina",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Ayacucho",
+      "Huancavelica",
+      "Junín",
+      "Cusco"
+    ],
+    "descripcion": "Habas gigantes y comunes cultivadas en los valles y punas andinas, legumbre tradicional andina.",
+    "beneficios": [
+      "Excelente fuente de proteínas vegetales",
+      "Rica en hierro y ácido fólico",
+      "Ayuda a controlar el peso y la glucosa"
+    ],
+    "nutricion_100g": {
+      "calorias": 341,
+      "proteinas": 26.0,
+      "carbohidratos": 59.0,
+      "grasas": 1.2
+    }
+  },
+  {
+    "id": 29,
+    "nombre": "Avena Andina",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Junín",
+      "Puno"
+    ],
+    "descripcion": "Cereal de grano entero cultivado en los valles interandinos de Junín y Puno, base de chupes y alimentos infantiles.",
+    "beneficios": [
+      "Beta-glucano que reduce el colesterol",
+      "Rico en fibra soluble",
+      "Energía de liberación sostenida"
+    ],
+    "nutricion_100g": {
+      "calorias": 389,
+      "proteinas": 16.9,
+      "carbohidratos": 66.0,
+      "grasas": 6.9
+    }
+  },
+  {
+    "id": 30,
+    "nombre": "Yacon",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Áncash",
+      "Cajamarca"
+    ],
+    "descripcion": "Tubérculo originario de Áncash y Cajamarca, rico en fructooligosacáridos que actúan como prebiótico.",
+    "beneficios": [
+      "Prebiótico natural que mejora la flora intestinal",
+      "Bajo índice glucémico, apto para diabéticos",
+      "Mejora la digestión y la absorción de minerales"
+    ],
+    "nutricion_100g": {
+      "calorias": 54,
+      "proteinas": 0.7,
+      "carbohidratos": 12.0,
+      "grasas": 0.1
+    }
+  },
+  {
+    "id": 31,
+    "nombre": "Café Andino",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Junín",
+      "Cajamarca",
+      "Huánuco",
+      "Amazonas"
+    ],
+    "descripcion": "Café de altura cultivado en las selvas altas y valles interandinos de Junín, Cajamarca y Amazonas.",
+    "beneficios": [
+      "Alto en antioxidantes (ácido clorogénico)",
+      "Mejora el rendimiento mental y la concentración",
+      "Acelera el metabolismo y la quema de grasas"
+    ],
+    "nutricion_100g": {
+      "calorias": 84,
+      "proteinas": 1.2,
+      "carbohidratos": 0.6,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 32,
+    "nombre": "Cacao de Cusco",
+    "categoria": "Alimento",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco"
+    ],
+    "descripcion": "Cacao fino de aroma cultivado en los valles interandinos cusqueños, con notas frutales y amaderadas únicas.",
+    "beneficios": [
+      "Flavanoles que mejoran la cognición",
+      "Mejora el estado de ánimo por serotonina natural",
+      "Protege la salud cardiovascular"
+    ],
+    "nutricion_100g": {
+      "calorias": 228,
+      "proteinas": 19.6,
+      "carbohidratos": 57.9,
+      "grasas": 13.7
+    }
+  },
+  {
+    "id": 33,
+    "nombre": "Cerveza Artesanal Andina",
+    "categoria": "Bebida",
+    "region": "Sierra",
+    "departamentos": [
+      "Cusco"
+    ],
+    "descripcion": "Cerveza artesanal elaborada con cebada y maltas andinas, inspirada en la tradición cervecera cusqueña.",
+    "beneficios": [
+      "Elaborada sin aditivos artificiales",
+      "Fuente de vitaminas del grupo B",
+      "Se consume con moderación y tradición festiva"
+    ],
+    "nutricion_100g": {
+      "calorias": 45,
+      "proteinas": 1.5,
+      "carbohidratos": 3.6,
+      "grasas": 0.0
+    }
+  },
+  {
+    "id": 34,
+    "nombre": "Cacao de San Martín",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "San Martín"
+    ],
+    "descripcion": "Cacao de altura y selva baja de San Martín, con perfiles aromáticos únicos y certificación de origen.",
+    "beneficios": [
+      "Mejora la función cognitiva y el ánimo",
+      "Rico en magnesio y antioxidantes",
+      "Apoya la salud cardiovascular"
+    ],
+    "nutricion_100g": {
+      "calorias": 228,
+      "proteinas": 19.6,
+      "carbohidratos": 57.9,
+      "grasas": 13.7
+    }
+  },
+  {
+    "id": 35,
+    "nombre": "Café de la Selva",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "San Martín",
+      "Ucayali",
+      "Huánuco"
+    ],
+    "descripcion": "Café cultivado en las selvas de San Martín y Ucayali, variedad robusta y arábica de altura.",
+    "beneficios": [
+      "Aporta energía y concentración por cafeína",
+      "Alto contenido de antioxidantes",
+      "Fuente de potasio y magnesio"
+    ],
+    "nutricion_100g": {
+      "calorias": 84,
+      "proteinas": 1.2,
+      "carbohidratos": 0.6,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 36,
+    "nombre": "Camu Camu",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto",
+      "Ucayali"
+    ],
+    "descripcion": "Fruta amazónica de lagunas y igarapés, la fuente natural más concentrada de vitamina C del planeta.",
+    "beneficios": [
+      "Contenido excepcional de vitamina C",
+      "Potente acción antiinflamatoria",
+      "Refuerza el sistema inmunológico"
+    ],
+    "nutricion_100g": {
+      "calorias": 44,
+      "proteinas": 0.4,
+      "carbohidratos": 10.0,
+      "grasas": 0.4
+    }
+  },
+  {
+    "id": 37,
+    "nombre": "Cocona",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "San Martín",
+      "Ucayali"
+    ],
+    "descripcion": "Fruto de la cocona (Solanum sessiliflorum), tomate amarillo anaranjado de la selva peruana.",
+    "beneficios": [
+      "Alto en vitamina C y betacarotenos",
+      "Propiedades digestivas y refrescantes",
+      "Bajo en calorías y rico en agua"
+    ],
+    "nutricion_100g": {
+      "calorias": 36,
+      "proteinas": 1.5,
+      "carbohidratos": 6.0,
+      "grasas": 0.3
+    }
+  },
+  {
+    "id": 38,
+    "nombre": "Aguaje",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto",
+      "Ucayali"
+    ],
+    "descripcion": "Fruta de la palmera Mauritia flexuosa de la selva baja, considerada afrodisíaca y tónica en la Amazonía.",
+    "beneficios": [
+      "Rico en betacarotenos y vitamina A",
+      "Aporta energía y equilibrio hormonal",
+      "Fuente de hierro y fibra"
+    ],
+    "nutricion_100g": {
+      "calorias": 135,
+      "proteinas": 1.1,
+      "carbohidratos": 18.0,
+      "grasas": 7.0
+    }
+  },
+  {
+    "id": 39,
+    "nombre": "Castaña de Brasil",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Madre de Dios",
+      "Loreto"
+    ],
+    "descripcion": "Nuez amazónica recolectada de forma sostenible en bosques nativos, especialmente Madre de Dios.",
+    "beneficios": [
+      "Una de las mejores fuentes mundiales de selenio",
+      "Grasas saludables y proteína vegetal",
+      "Aporta magnesio y zinc"
+    ],
+    "nutricion_100g": {
+      "calorias": 659,
+      "proteinas": 14.0,
+      "carbohidratos": 24.0,
+      "grasas": 66.0
+    }
+  },
+  {
+    "id": 40,
+    "nombre": "Yarina",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto"
+    ],
+    "descripcion": "Fruta oleaginosa de la palmera yarina, nativa de los bosques inundables del río Amazonas.",
+    "beneficios": [
+      "Ácido oleico saludable para el corazón",
+      "Alta en energía y vitaminas A y E",
+      "Aporta fibra y minerales"
+    ],
+    "nutricion_100g": {
+      "calorias": 150,
+      "proteinas": 1.0,
+      "carbohidratos": 8.0,
+      "grasas": 12.0
+    }
+  },
+  {
+    "id": 41,
+    "nombre": "Ají Charapita",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "San Martín",
+      "Loreto"
+    ],
+    "descripcion": "Ají amazónico diminuto y extremadamente picante, nativo de las llanuras de San Martín y Loreto.",
+    "beneficios": [
+      "Capsaicina que acelera el metabolismo",
+      "Alto contenido de vitamina C",
+      "Propiedades antimicrobianas"
+    ],
+    "nutricion_100g": {
+      "calorias": 293,
+      "proteinas": 12.0,
+      "carbohidratos": 56.0,
+      "grasas": 6.0
+    }
+  },
+  {
+    "id": 42,
+    "nombre": "Chonta",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Ucayali",
+      "Loreto"
+    ],
+    "descripcion": "Corazón de palma de la palmera de chonta, palmito amazónico recolectado de forma sostenible.",
+    "beneficios": [
+      "Alto en fibra dietética",
+      "Rico en minerales como potasio",
+      "Bajo en grasas y calorías"
+    ],
+    "nutricion_100g": {
+      "calorias": 45,
+      "proteinas": 1.5,
+      "carbohidratos": 8.0,
+      "grasas": 0.5
+    }
+  },
+  {
+    "id": 43,
+    "nombre": "Paiche",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto"
+    ],
+    "descripcion": "Pez de agua dulce más grande de América, endémico del río Amazonas, carne magra y blanca.",
+    "beneficios": [
+      "Proteína magra de alta calidad",
+      "Rico en ácidos grasos omega-3",
+      "Fuente de fósforo y vitamina B12"
+    ],
+    "nutricion_100g": {
+      "calorias": 100,
+      "proteinas": 20.0,
+      "carbohidratos": 0.0,
+      "grasas": 2.0
+    }
+  },
+  {
+    "id": 44,
+    "nombre": "Inji",
+    "categoria": "Bebida",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto",
+      "Ucayali"
+    ],
+    "descripcion": "Bebida amazónica refrescante elaborada con piña, jengibre y especias, típica de la selva baja.",
+    "beneficios": [
+      "Mejora la digestión por el jengibre",
+      "Vitamina C de la piña",
+      "Propiedades antibacterianas naturales"
+    ],
+    "nutricion_100g": {
+      "calorias": 45,
+      "proteinas": 1.0,
+      "carbohidratos": 5.0,
+      "grasas": 0.0
+    }
+  },
+  {
+    "id": 45,
+    "nombre": "Clava Inga",
+    "categoria": "Bebida",
+    "region": "Selva",
+    "departamentos": [
+      "Junín",
+      "Cajamarca"
+    ],
+    "descripcion": "Té medicinal de la selva alta, elaborado con las vainas de la inga, árbol sagrado de las comunidades andino-amazónicas.",
+    "beneficios": [
+      "Efecto relajante y sedante natural",
+      "Mejora la digestión",
+      "Propiedades antiinflamatorias suaves"
+    ],
+    "nutricion_100g": {
+      "calorias": 2,
+      "proteinas": 0.0,
+      "carbohidratos": 0.5,
+      "grasas": 0.0
+    }
+  },
+  {
+    "id": 46,
+    "nombre": "Sacha Inchi",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "San Martín",
+      "Loreto",
+      "Amazonas"
+    ],
+    "descripcion": "Semilla de la planta Plukenetia volubilis de la selva peruana, conocida como el 'maní inca' por su aceite.",
+    "beneficios": [
+      "Equilibrio único de omega-3, 6 y 9",
+      "Proteína vegetal completa",
+      "Ayuda a reducir el colesterol LDL"
+    ],
+    "nutricion_100g": {
+      "calorias": 500,
+      "proteinas": 27.0,
+      "carbohidratos": 11.0,
+      "grasas": 35.0
+    }
+  },
+  {
+    "id": 47,
+    "nombre": "Achachairú",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Madre de Dios",
+      "Loreto"
+    ],
+    "descripcion": "Fruta amazónica parecida a la uva, crece en la Amazonía sur y es apreciada por su sabor dulce y ácido.",
+    "beneficios": [
+      "Rica en antioxidantes y vitamina C",
+      "Baja en calorías",
+      "Aporta fibra y minerales"
+    ],
+    "nutricion_100g": {
+      "calorias": 60,
+      "proteinas": 0.6,
+      "carbohidratos": 13.0,
+      "grasas": 0.2
+    }
+  },
+  {
+    "id": 48,
+    "nombre": "Miel de Abeja Amazónica",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Madre de Dios",
+      "Loreto",
+      "Ucayali"
+    ],
+    "descripcion": "Miel silvestre recolectada de apicultura tradicional en bosques amazónicos, con propiedades medicinales únicas.",
+    "beneficios": [
+      "Potente antioxidante y antibacteriano",
+      "Energía rápida y recuperación deportiva",
+      "Propiedades curativas tradicionales"
+    ],
+    "nutricion_100g": {
+      "calorias": 304,
+      "proteinas": 0.3,
+      "carbohidratos": 82.0,
+      "grasas": 0.0
+    }
+  },
+  {
+    "id": 49,
+    "nombre": "Açaí Amazónico",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto"
+    ],
+    "descripcion": "Fruto de la palmera açaí de la selva norte peruana, base de la energía de los pueblos amazónicos.",
+    "beneficios": [
+      "Altamente antioxidante por antocianinas",
+      "Mejora la salud cardiovascular",
+      "Energía natural y sostenida"
+    ],
+    "nutricion_100g": {
+      "calorias": 70,
+      "proteinas": 2.0,
+      "carbohidratos": 4.0,
+      "grasas": 5.0
+    }
+  },
+  {
+    "id": 50,
+    "nombre": "Huito",
+    "categoria": "Alimento",
+    "region": "Selva",
+    "departamentos": [
+      "Loreto"
+    ],
+    "descripcion": "Fruta de la genipa (Genipa americana), de pulpa azulada oscura, usada en la selva como alimento y tintorero natural.",
+    "beneficios": [
+      "Alto contenido de antioxidantes",
+      "Propiedades antibacterianas y antifúngicas",
+      "Fuente de vitamina C"
+    ],
+    "nutricion_100g": {
+      "calorias": 40,
+      "proteinas": 0.5,
+      "carbohidratos": 9.0,
+      "grasas": 0.2
+    }
+  }
+]

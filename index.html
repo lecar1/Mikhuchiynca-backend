@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIKHUCHIYNCA - Planes Nutricionales con Superalimentos Peruanos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <span class="logo-text">MIKHUCHIYNCA</span>
+            </div>
+            <p class="tagline">Planes nutricionales personalizados con superalimentos Peruanos</p>
+        </header>
+        <main>
+            <form id="nutritionForm" class="nutrition-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weight">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                            Peso (kg)
+                        </label>
+                        <input type="number" id="weight" name="weight" min="30" max="200" placeholder="Ej. 75" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="19" x2="12" y2="5"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Estatura (cm)
+                        </label>
+                        <input type="number" id="height" name="height" min="100" max="250" placeholder="Ej. 175" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            Edad
+                        </label>
+                        <input type="number" id="age" name="age" min="15" max="100" placeholder="Ej. 28" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            Género
+                        </label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Selecciona</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        Objetivo
+                    </label>
+                    <div class="goal-options">
+                        <button type="button" class="goal-btn" data-goal="gain" role="radio" aria-checked="false">
+                            <svg class="goal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 19v-6"/>
+                                <path d="M9 16h6"/>
+                                <path d="M22 12h-6"/>
+                                <path d="M19 9v6"/>
+                                <path d="M16 6h6"/>
+                                <path d="M12 2v6"/>
+                            </svg>
+                            <span class="goal-label">Ganar masa muscular</span>
+                            <span class="goal-desc">Superávit calórico + alta proteína</span>
+                        </button>
+                        <button type="button" class="goal-btn" data-goal="loss" role="radio" aria-checked="false">
+                            <svg class="goal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 5v6"/>
+                                <path d="M9 8h6"/>
+                                <path d="M22 12h-6"/>
+                                <path d="M19 15v6"/>
+                                <path d="M16 18h6"/>
+                                <path d="M12 22v-6"/>
+                            </svg>
+                            <span class="goal-label">Perder grasa</span>
+                            <span class="goal-desc">Déficit calórico + saciedad</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="goal" name="goal" required>
+                </div>
+                <div class="form-group">
+                    <label for="activity">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        Nivel de actividad
+                    </label>
+                    <select id="activity" name="activity" required>
+                        <option value="1.2">Sedentario (poco o ningún ejercicio)</option>
+                        <option value="1.375">Ligero (ejercicio 1-3 días/semana)</option>
+                        <option value="1.55" selected>Moderado (ejercicio 3-5 días/semana)</option>
+                        <option value="1.725">Intenso (ejercicio 6-7 días/semana)</option>
+                        <option value="1.9">Muy intenso (entrenamiento 2x/día)</option>
+                    </select>
+                </div>
+<div style="margin-top:15px;">
+    <label style="color: white; font-size: 0.9rem;">📍 ¿De qué región quieres tu dieta?</label>
+    <select id="region" style="width: 100%; padding: 10px; border-radius: 5px; margin-top: 5px; background: #1a2639; color: white; border: 1px solid #2c3e50;">
+        <option value="Costa">Costa</option>
+        <option value="Sierra">Sierra</option>
+        <option value="Selva">Selva</option>
+    </select>
+</div>
+                <button type="submit" id="generateBtn" class="btn-primary">
+                    <span class="btn-text">Generar Plan Nutricional</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            <div id="result" class="result hidden">
+                <div class="result-header">
+                    <h2>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        Tu Plan Nutricional Personalizado
+                    </h2>
+                    <p class="result-meta" id="resultMeta"></p>
+                </div>
+                <div class="calories-summary" id="caloriesSummary"></div>
+                <div class="menu-sections" id="menuSections"></div>
+                <div class="superfoods-recommendation" id="superfoodsRecommendation"></div>
+            </div>
+<div id="contenedor-superalimentos" class="grid-alimentos"></div>
+<!-- INICIO CHATBOX MIKHUCHIYNCA -->
+<div style="background: #1a2639; border: 1px solid #2c3e50; border-radius: 8px; padding: 20px; margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <h3 style="color: #f39c12; margin-top: 0; font-family: sans-serif;">💬 Consulta a la IA de MIKHUCHIYNCA</h3>
+    
+    <!-- Historial de mensajes -->
+    <div id="chat-historial" style="background: white; height: 300px; overflow-y: auto; padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: sans-serif; font-size: 0.95rem; line-height: 1.5; text-align: left;">
+        <p style="color: #27ae60; margin: 0 0 10px 0;"><strong>Nutricionista IA:</strong> ¡Hola! ¿Qué dudas tienes sobre las propiedades de nuestros superalimentos peruanos o tu plan nutricional?</p>
+    </div>
+<!-- Vista previa de la foto (oculta por defecto) -->
+    <div id="vista-previa-imagen" style="display: none; align-items: center; gap: 10px; margin-bottom: 10px; background: #2c3e50; padding: 5px 10px; border-radius: 6px; color: white; font-size: 0.85rem;">
+        <span>📷 Foto:</span>
+        <strong id="nombre-archivo-img" style="color: #f39c12;"></strong>
+        <button id="quitar-img" style="background: transparent; border: none; color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 1.1rem;">×</button>
+    </div>
+    
+    <!-- Barra del chat con la nueva opción de cámara -->
+    <div style="display: flex; gap: 10px; align-items: center;">
+        <input type="file" id="chat-foto" accept="image/*" style="display: none;">
+        
+        <button id="btn-foto" type="button" style="background: #34495e; border: 1px solid #7f8c8d; color: white; border-radius: 6px; padding: 12px; cursor: pointer;" title="Subir foto de tu plato">📷</button>
+        
+        <input type="text" id="chat-input" placeholder="Pregunta algo o envía una foto de tu comida..." style="flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc;">
+        
+        <button id="btn-enviar-chat" style="background: #e67e22; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">Enviar</button>
+    </div>   
+ </div>
+</div>
+<!-- FIN CHATBOX -->
+        </main>
+        <footer>
+            <p>&copy; 2026 MIKHUCHIYNCA. Promoviendo la alimentación saludable con productos locales peruanos.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
