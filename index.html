@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="container">
@@ -22,7 +22,15 @@
             <p class="tagline">Planes nutricionales personalizados con superalimentos Peruanos</p>
         </header>
         <main>
-            <form id="nutritionForm" class="nutrition-form">
+        <div class="cta-container" style="margin: 2.5rem 0;">
+            <button type="button" class="btn-primary" onclick="document.getElementById('nutritionForm').scrollIntoView({behavior: 'smooth'});">
+                Generar mi plan gratis
+            </button>
+            <button type="button" class="btn-secondary" onclick="document.getElementById('contenedor-superalimentos').scrollIntoView({behavior: 'smooth'});">
+                Conoce los superalimentos
+            </button>
+        </div>
+            <form id="nutritionForm" class="nutrition-form" onsubmit="event.preventDefault();">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="weight">
@@ -75,6 +83,20 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="health_history">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        Antecedentes de Salud
+                    </label>
+                    <select id="health_history" name="health_history" required>
+                        <option value="Ninguno">Ninguno</option>
+                        <option value="Diabetes">Diabetes</option>
+                        <option value="Hipertensión">Hipertensión</option>
+                        <option value="Obesidad">Obesidad</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -124,14 +146,14 @@
                         <option value="1.9">Muy intenso (entrenamiento 2x/día)</option>
                     </select>
                 </div>
-<div style="margin-top:15px;">
-    <label style="color: white; font-size: 0.9rem;">📍 ¿De qué región quieres tu dieta?</label>
-    <select id="region" style="width: 100%; padding: 10px; border-radius: 5px; margin-top: 5px; background: #1a2639; color: white; border: 1px solid #2c3e50;">
-        <option value="Costa">Costa</option>
-        <option value="Sierra">Sierra</option>
-        <option value="Selva">Selva</option>
-    </select>
-</div>
+                <div class="form-group">
+                    <label style="color: white; font-size: 0.9rem; margin-top: 15px;">📍 ¿De qué región quieres tu dieta?</label>
+                    <select id="region" style="width: 100%; padding: 10px; border-radius: 5px; margin-top: 5px; background: #1a2639; color: white; border: 1px solid #2c3e50;">
+                        <option value="Costa">Costa</option>
+                        <option value="Sierra">Sierra</option>
+                        <option value="Selva">Selva</option>
+                    </select>
+                </div>
                 <button type="submit" id="generateBtn" class="btn-primary">
                     <span class="btn-text">Generar Plan Nutricional</span>
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -140,6 +162,54 @@
                     </svg>
                 </button>
             </form>
+            
+            <!-- =========================================== -->
+            <!-- SECCIÓN: PLAN FAMILIAR                     -->
+            <!-- =========================================== -->
+            <section id="seccion-familiar" class="familiar-section">
+                <div class="familiar-header">
+                    <div class="familiar-title">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <h2>🏠 Plan Familiar</h2>
+                    </div>
+                    <p class="familiar-subtitle">Genera un plan nutricional personalizado para cada integrante de tu familia, con una lista de compras consolidada.</p>
+                </div>
+
+                <div id="familiar-miembros" class="familiar-miembros"></div>
+
+                <button type="button" id="btn-agregar-miembro" class="btn-agregar-miembro">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Añadir Miembro
+                </button>
+
+                <button type="button" id="btn-generar-familiar" class="btn-generar-familiar" style="display:none;">
+                    <span class="btn-familiar-text">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        Generar Plan Familiar
+                    </span>
+                    <span class="btn-familiar-spinner" style="display:none;">
+                        <svg class="spinner-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                        </svg>
+                        Analizando familia...
+                    </span>
+                </button>
+            </section>
+
+            <!-- Resultado del Plan Familiar -->
+            <div id="resultado-familiar" class="resultado-familiar hidden"></div>
             <div id="result" class="result hidden">
                 <div class="result-header">
                     <h2>
@@ -156,40 +226,47 @@
                 <div class="menu-sections" id="menuSections"></div>
                 <div class="superfoods-recommendation" id="superfoodsRecommendation"></div>
             </div>
-<div id="contenedor-superalimentos" class="grid-alimentos"></div>
-<!-- INICIO CHATBOX MIKHUCHIYNCA -->
-<div style="background: #1a2639; border: 1px solid #2c3e50; border-radius: 8px; padding: 20px; margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
-    <h3 style="color: #f39c12; margin-top: 0; font-family: sans-serif;">💬 Consulta a la IA de MIKHUCHIYNCA</h3>
-    
-    <!-- Historial de mensajes -->
-    <div id="chat-historial" style="background: white; height: 300px; overflow-y: auto; padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: sans-serif; font-size: 0.95rem; line-height: 1.5; text-align: left;">
-        <p style="color: #27ae60; margin: 0 0 10px 0;"><strong>Nutricionista IA:</strong> ¡Hola! ¿Qué dudas tienes sobre las propiedades de nuestros superalimentos peruanos o tu plan nutricional?</p>
-    </div>
-<!-- Vista previa de la foto (oculta por defecto) -->
-    <div id="vista-previa-imagen" style="display: none; align-items: center; gap: 10px; margin-bottom: 10px; background: #2c3e50; padding: 5px 10px; border-radius: 6px; color: white; font-size: 0.85rem;">
-        <span>📷 Foto:</span>
-        <strong id="nombre-archivo-img" style="color: #f39c12;"></strong>
-        <button id="quitar-img" style="background: transparent; border: none; color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 1.1rem;">×</button>
-    </div>
-    
-    <!-- Barra del chat con la nueva opción de cámara -->
-    <div style="display: flex; gap: 10px; align-items: center;">
-        <input type="file" id="chat-foto" accept="image/*" style="display: none;">
-        
-        <button id="btn-foto" type="button" style="background: #34495e; border: 1px solid #7f8c8d; color: white; border-radius: 6px; padding: 12px; cursor: pointer;" title="Subir foto de tu plato">📷</button>
-        
-        <input type="text" id="chat-input" placeholder="Pregunta algo o envía una foto de tu comida..." style="flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc;">
-        
-        <button id="btn-enviar-chat" style="background: #e67e22; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">Enviar</button>
-    </div>   
- </div>
-</div>
-<!-- FIN CHATBOX -->
+            
+            <!-- SECCIÓN DE SUPERALIMENTOS -->
+            <div id="contenedor-superalimentos" class="grid-alimentos"></div>
+            
+            <!-- INICIO CHATBOX MIKHUCHIYNCA -->
+            <div class="chat-container">
+                <h3>💬 Consulta a la IA de MIKHUCHIYNCA</h3>
+                
+                <!-- Historial de mensajes -->
+                <div id="chat-historial" class="chat-history">
+                    <p style="color: #27ae60; margin: 0 0 10px 0;"><strong>Nutricionista IA:</strong> ¡Hola! ¿Qué dudas tienes sobre las propiedades de nuestros superalimentos peruanos o tu plan nutricional?</p>
+                    
+                    <!-- AQUÍ ESTÁN LOS BOTONES CORREGIDOS -->
+                    <div id="sugerencias-chat" class="quick-replies">
+                        <button type="button" class="quick-reply" onclick="enviarSugerencia('Quiero un plan para bajar de peso')">📉 Quiero bajar de peso</button>
+                        <button type="button" class="quick-reply" onclick="enviarSugerencia('Necesito más energía para mi día a día')">⚡ Necesito más energía</button>
+                        <button type="button" class="quick-reply" onclick="enviarSugerencia('Quiero analizar la foto de mi plato')">📷 Analizar mi plato</button>
+                    </div>
+                </div>
+
+                <!-- Vista previa de la foto -->
+                <div id="vista-previa-imagen" class="vista-previa-imagen">
+                    <span>📷 Foto:</span>
+                    <strong id="nombre-archivo-img"></strong>
+                    <button id="quitar-img" class="quitar-btn" style="background: transparent; border: none; color: #e74c3c; cursor: pointer; font-weight: bold; font-size: 1.1rem;">×</button>
+                </div>
+                
+                <!-- Barra de entrada del chat -->
+                <div class="barra-chat">
+                    <input type="file" id="chat-foto" accept="image/*" style="display: none;">
+                    <button id="btn-foto" class="btn-foto" type="button" title="Subir foto de tu plato">📷</button>
+                    <input type="text" id="chat-input" placeholder="Pregunta algo o envía una foto de tu comida..." style="flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc;">
+                    <button id="btn-enviar-chat" class="btn-enviar-chat" type="button">Enviar</button>
+                </div>   
+             </div>
+            <!-- FIN CHATBOX -->
         </main>
         <footer>
             <p>&copy; 2026 MIKHUCHIYNCA. Promoviendo la alimentación saludable con productos locales peruanos.</p>
         </footer>
     </div>
-    <script src="app.js"></script>
+    <script src="/app.js?v=100000"></script>
 </body>
 </html>
