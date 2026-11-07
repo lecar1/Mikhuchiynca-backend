@@ -1,3 +1,5 @@
 flask
 flask-cors
 google-genai
+flask-sqlalchemy
+flask-login

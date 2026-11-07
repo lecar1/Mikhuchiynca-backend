@@ -136,35 +136,37 @@ function enviarSugerencia(texto) {
     if (inputChat) inputChat.value = texto;
     enviarMensajeChat(texto);
 }
-
 // ==========================================
 // 3. FORMULARIO: GENERAR PLAN NUTRICIONAL INDIVIDUAL
 // ==========================================
 const nutritionForm = document.getElementById('nutritionForm');
-const generateBtn   = document.getElementById('generateBtn');
-const resultDiv     = document.getElementById('result');
+const generateBtn = document.getElementById('generateBtn');
+const resultDiv = document.getElementById('result');
 
 if (nutritionForm) {
     nutritionForm.addEventListener('submit', async function (event) {
-        // Garantizar que NUNCA recargue la página ni modifique la URL
-        event.preventDefault();
+        event.preventDefault(); // Evita que la página se recargue
         event.stopPropagation();
 
-        const peso           = parseFloat(document.getElementById('weight')?.value) || 0;
-        const estatura       = parseFloat(document.getElementById('height')?.value) || 0;
-        const region         = document.getElementById('region')?.value || 'Costa';
+        // 1. Capturamos TODOS los datos del formulario
+        const peso = parseFloat(document.getElementById('weight')?.value) || 0;
+        const estatura = parseFloat(document.getElementById('height')?.value) || 0;
+        const edad = parseFloat(document.getElementById('age')?.value) || 0;
+        const genero = document.getElementById('gender')?.value || 'No especificado';
+        const objetivo = document.getElementById('goal')?.value || 'Mantener peso';
+        const actividad = parseFloat(document.getElementById('activity')?.value) || 1.2;
+        const region = document.getElementById('region')?.value || 'Costa';
         const health_history = document.getElementById('health_history')?.value || 'Ninguno';
 
-        // IMC calculado en frontend
+        // 2. Calculamos el IMC
         const imc = estatura > 0 ? (peso / Math.pow(estatura / 100, 2)).toFixed(1) : 0;
 
-        // Estado del botón: spinner y deshabilitar
+        // 3. Estado del botón: spinner y deshabilitar
         const textoOriginal = generateBtn ? generateBtn.innerHTML : '';
         if (generateBtn) {
             generateBtn.innerHTML = `
                 <span class="btn-text">Generando plan...</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
                      style="animation:spin 1s linear infinite;width:20px;height:20px;">
                     <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
                 </svg>`;
@@ -172,78 +174,108 @@ if (nutritionForm) {
         }
 
         try {
-            const respuesta = await fetch('/generar-plan', {
+            // 4. Petición al backend
+            const response = await fetch('/generar-plan', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    peso:           peso,
-                    region:         region,
-                    objetivo:       objetivoSeleccionado,
+                    peso: peso,
+                    estatura: estatura,
+                    edad: edad,
+                    genero: genero,
+                    objetivo: objetivo,
+                    actividad: actividad,
+                    region: region,
                     health_history: health_history,
-                    imc:            parseFloat(imc)
+                    imc: imc
                 })
             });
 
-            const datos = await respuesta.json();
+            const data = await response.json();
 
-            if (resultDiv) {
-                resultDiv.classList.remove('hidden');
-
-                if (datos.exito) {
-                    resultDiv.innerHTML = `
-                        <div class="result-header">
-                            <h2>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                    <path d="M2 17l10 5 10-5"/>
-                                    <path d="M2 12l10 5 10-5"/>
-                                </svg>
-                                Tu Plan Nutricional Personalizado
-                            </h2>
-                            <p class="result-meta" id="resultMeta">
-                                📍 Región: <strong>${region}</strong> &nbsp;|&nbsp;
-                                🎯 Objetivo: <strong>${objetivoSeleccionado}</strong> &nbsp;|&nbsp;
-                                📊 IMC: <strong>${imc}</strong> ${health_history !== 'Ninguno' ? `&nbsp;|&nbsp; ⚠️ Condición: <strong>${health_history}</strong>` : ''}
-                            </p>
-                        </div>
-                        <div class="plan-card" style="margin-top: 1rem;">
-                            ${datos.html}
-                        </div>
-                    `;
-                } else {
-                    const esSaturacion = respuesta.status === 503 || (datos.error || '').toLowerCase().includes('503');
-                    resultDiv.innerHTML = `
-                        <div class="plan-card" style="border-color:var(--danger);margin-top:1rem;">
-                            <p style="color:#e74c3c;">
-                                <strong>${esSaturacion ? '🚦 IA en alto tráfico:' : 'Error:'}</strong>
-                                ${esSaturacion ? 'Nuestra IA está muy solicitada en este momento. Intenta de nuevo en unos segundos.' : datos.error}
-                            </p>
-                        </div>
-                    `;
+            if (data.exito) {
+                if (resultDiv) {
+                    resultDiv.classList.remove('hidden');
+                    document.getElementById('menuSections').innerHTML = data.html;
+                    resultDiv.scrollIntoView({ behavior: 'smooth' });
                 }
-
-                // Scroll suave al div#result
-                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Si el usuario tiene sesión activa, actualizar su perfil en la BD
+                if (typeof guardarPerfilActualizado === 'function') {
+                    guardarPerfilActualizado({ peso, estatura, edad });
+                }
+                // Recordar preferencias en este dispositivo (localStorage)
+                if (window.PreferenciasLocales) {
+                    window.PreferenciasLocales.guardar(window.PreferenciasLocales.leerFormulario());
+                }
+            } else {
+                alert("Error del servidor: " + data.error);
             }
         } catch (error) {
-            if (resultDiv) {
-                resultDiv.classList.remove('hidden');
-                resultDiv.innerHTML = `
-                    <div class="plan-card" style="border-color:var(--danger);margin-top:1rem;">
-                        <p style="color:#e74c3c;"><strong>Error de conexión:</strong> No se pudo conectar con el servidor.</p>
-                    </div>
-                `;
-                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            console.error("Error de conexión:", error);
+            alert("Error de conexión con el servidor. ¿Está encendido Flask?");
         } finally {
+            // 5. Restaurar el botón
             if (generateBtn) {
                 generateBtn.innerHTML = textoOriginal;
-                generateBtn.disabled  = false;
+                generateBtn.disabled = false;
             }
         }
     });
 }
 
+// ==========================================
+// 4. BOTONES DE SUGERENCIA RÁPIDA (CHAT)
+// ==========================================
+window.enviarSugerencia = function(texto) {
+    const inputChat = document.getElementById('chat-input');
+    const btnEnviar = document.getElementById('btn-enviar-chat');
+    if (inputChat && btnEnviar) {
+        inputChat.value = texto;
+        btnEnviar.click();
+        const sugerencias = document.getElementById('sugerencias-chat');
+        if (sugerencias) sugerencias.style.display = 'none';
+    }
+};
+
+// ==========================================
+// 5. FORMULARIO: PLAN FAMILIAR
+// ==========================================
+const btnModoFamiliar = document.getElementById('btn-modo-familiar');
+if (btnModoFamiliar) {
+    btnModoFamiliar.addEventListener('click', async () => {
+        const familiaPrueba = [
+            { nombre: "Mamá", peso: 80, estatura: 160, edad: 50, antecedentes: "Diabetes" },
+            { nombre: "Papá", peso: 90, estatura: 175, edad: 55, antecedentes: "Hipertensión" }
+        ];
+
+        btnModoFamiliar.innerText = "Generando plan familiar...";
+        btnModoFamiliar.disabled = true;
+
+        try {
+            const respuesta = await fetch('/generar-plan-familiar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ familia: familiaPrueba })
+            });
+            const data = await respuesta.json();
+
+            if (data.exito) {
+                const resultDiv = document.getElementById('result');
+                const menuDiv = document.getElementById('menuSections');
+                resultDiv.classList.remove('hidden');
+                menuDiv.innerHTML = data.html;
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Error: " + data.error);
+            }
+        } catch (error) {
+            alert("Error de conexión con el servidor.");
+        } finally {
+            btnModoFamiliar.innerText = "👨‍👩‍👧‍👦 Generar Plan Familiar";
+            btnModoFamiliar.disabled = false;
+        }
+    });
+}
 // ==========================================
 // 4. MODO FAMILIAR — LÓGICA COMPLETA
 // ==========================================
@@ -437,6 +469,16 @@ function renderizarResultadoFamiliar(datos, miembros) {
             <div class="familiar-result-header">
                 <h2>🍽️ Plan Nutricional Familiar</h2>
                 <p>${miembros.length} integrante${miembros.length > 1 ? 's' : ''} • Generado por Comité Médico IA de MIKHUCHIYNCA</p>
+            </div>
+            <div class="familiar-pdf-acciones">
+                <button type="button" id="btn-descargar-pdf-familiar" class="btn-descargar-pdf" title="Se abrirá el diálogo de impresión; elige «Guardar como PDF»">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Descargar PDF
+                </button>
             </div>`;
 
         if (datos.lista_compras) {
@@ -487,4 +529,300 @@ function volverFormularioFamiliar() {
     seccionForm.style.display = '';
     seccionForm.style.opacity = '1';
     seccionForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ==========================================
+// 6. SISTEMA DE CUENTAS DE USUARIO (LOGIN / REGISTRO)
+// ==========================================
+let usuarioActual = null;
+
+const btnAbrirAuth     = document.getElementById('btn-abrir-auth');
+const usuarioBadge     = document.getElementById('usuario-autenticado');
+const userDisplayEmail = document.getElementById('user-display-email');
+const btnCerrarSesion  = document.getElementById('btn-cerrar-sesion');
+
+const authModal        = document.getElementById('auth-modal');
+const authModalBackdrop= document.getElementById('auth-modal-backdrop');
+const btnCerrarModal   = document.getElementById('btn-cerrar-modal');
+const tabEntrar        = document.getElementById('tab-entrar');
+const tabRegistrarse   = document.getElementById('tab-registrarse');
+const formLogin        = document.getElementById('form-login');
+const formRegistro     = document.getElementById('form-registro');
+const authAlerta       = document.getElementById('auth-alerta');
+
+function mostrarAlertaAuth(mensaje, tipo = 'error') {
+    if (!authAlerta) return;
+    authAlerta.textContent = mensaje;
+    authAlerta.className = `auth-alerta auth-alerta-${tipo}`;
+    authAlerta.classList.remove('hidden');
+}
+
+function ocultarAlertaAuth() {
+    if (authAlerta) authAlerta.classList.add('hidden');
+}
+
+function alternarPestanaAuth(pestana) {
+    ocultarAlertaAuth();
+    if (pestana === 'login') {
+        tabEntrar?.classList.add('active');
+        tabRegistrarse?.classList.remove('active');
+        formLogin?.classList.remove('hidden');
+        formRegistro?.classList.add('hidden');
+    } else {
+        tabRegistrarse?.classList.add('active');
+        tabEntrar?.classList.remove('active');
+        formRegistro?.classList.remove('hidden');
+        formLogin?.classList.add('hidden');
+    }
+}
+
+function abrirModalAuth(pestana = 'login') {
+    alternarPestanaAuth(pestana);
+    authModal?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarModalAuth() {
+    authModal?.classList.add('hidden');
+    document.body.style.overflow = '';
+    ocultarAlertaAuth();
+}
+
+// Actualizar la interfaz de usuario según el estado de sesión
+function actualizarUIUsuario(perfil) {
+    usuarioActual = perfil;
+    if (perfil && perfil.email) {
+        if (btnAbrirAuth) btnAbrirAuth.style.display = 'none';
+        if (usuarioBadge) usuarioBadge.classList.remove('hidden');
+        if (userDisplayEmail) userDisplayEmail.textContent = perfil.email;
+
+        // Auto-completar los campos de peso, estatura y edad en el formulario
+        const inputWeight = document.getElementById('weight');
+        const inputHeight = document.getElementById('height');
+        const inputAge    = document.getElementById('age');
+
+        if (inputWeight && perfil.peso)     inputWeight.value = perfil.peso;
+        if (inputHeight && perfil.estatura) inputHeight.value = perfil.estatura;
+        if (inputAge && perfil.edad)        inputAge.value = perfil.edad;
+    } else {
+        if (btnAbrirAuth) btnAbrirAuth.style.display = 'inline-flex';
+        if (usuarioBadge) usuarioBadge.classList.add('hidden');
+        if (userDisplayEmail) userDisplayEmail.textContent = '';
+    }
+}
+
+// Obtener datos del perfil actual desde el backend
+async function cargarPerfilUsuario() {
+    try {
+        const res = await fetch('/api/perfil');
+        if (res.ok) {
+            const data = await res.json();
+            if (data.exito && data.perfil) {
+                actualizarUIUsuario(data.perfil);
+            }
+        } else {
+            actualizarUIUsuario(null);
+        }
+
+        // Completar campos vacíos con las preferencias guardadas en el dispositivo
+        if (window.PreferenciasLocales) window.PreferenciasLocales.aplicarAlFormulario();
+    } catch (err) {
+        console.warn('Sesión no activa o sin conexión:', err);
+        actualizarUIUsuario(null);
+        if (window.PreferenciasLocales) window.PreferenciasLocales.aplicarAlFormulario();
+    }
+}
+
+// Guardar datos actualizados en la base de datos (POST /api/perfil)
+async function guardarPerfilActualizado(datos) {
+    if (!usuarioActual) return;
+    try {
+        const res = await fetch('/api/perfil', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+        const data = await res.json();
+        if (data.exito && data.perfil) {
+            usuarioActual = data.perfil;
+            mostrarToast('✅ Perfil y medidas guardados en tu cuenta.', 'success');
+        }
+    } catch (err) {
+        console.warn('Error al actualizar perfil del usuario:', err);
+    }
+}
+
+// Event Listeners del Modal y Tabs
+if (btnAbrirAuth) {
+    btnAbrirAuth.addEventListener('click', () => abrirModalAuth('login'));
+}
+
+if (btnCerrarModal) {
+    btnCerrarModal.addEventListener('click', cerrarModalAuth);
+}
+
+if (authModalBackdrop) {
+    authModalBackdrop.addEventListener('click', cerrarModalAuth);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && authModal && !authModal.classList.contains('hidden')) {
+        cerrarModalAuth();
+    }
+});
+
+if (tabEntrar) {
+    tabEntrar.addEventListener('click', () => alternarPestanaAuth('login'));
+}
+
+if (tabRegistrarse) {
+    tabRegistrarse.addEventListener('click', () => alternarPestanaAuth('registro'));
+}
+
+// Lógica de inicio de sesión (Login)
+if (formLogin) {
+    formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        ocultarAlertaAuth();
+
+        const email = document.getElementById('login-email')?.value.trim();
+        const password = document.getElementById('login-password')?.value;
+        const btnSubmit = document.getElementById('btn-submit-login');
+
+        if (!email || !password) {
+            mostrarAlertaAuth('Por favor completa todos los campos.');
+            return;
+        }
+
+        const textoOriginal = btnSubmit ? btnSubmit.innerHTML : '';
+        if (btnSubmit) {
+            btnSubmit.innerHTML = '<span>Iniciando sesión...</span>';
+            btnSubmit.disabled = true;
+        }
+
+        try {
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.exito) {
+                cerrarModalAuth();
+                formLogin.reset();
+                actualizarUIUsuario(data.usuario);
+                // Volver a cargar el perfil para asegurar campos actualizados
+                await cargarPerfilUsuario();
+                mostrarToast(`👋 ¡Bienvenido de nuevo, ${data.usuario.email}!`, 'success');
+            } else {
+                mostrarAlertaAuth(data.error || 'Credenciales inválidas.');
+            }
+        } catch (error) {
+            mostrarAlertaAuth('Error de conexión con el servidor.');
+        } finally {
+            if (btnSubmit) {
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
+            }
+        }
+    });
+}
+
+// Lógica de registro de usuario
+if (formRegistro) {
+    formRegistro.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        ocultarAlertaAuth();
+
+        const email = document.getElementById('registro-email')?.value.trim();
+        const password = document.getElementById('registro-password')?.value;
+        const peso = document.getElementById('registro-peso')?.value;
+        const estatura = document.getElementById('registro-estatura')?.value;
+        const edad = document.getElementById('registro-edad')?.value;
+        const btnSubmit = document.getElementById('btn-submit-registro');
+
+        if (!email || !password) {
+            mostrarAlertaAuth('Email y contraseña son obligatorios.');
+            return;
+        }
+
+        if (password.length < 6) {
+            mostrarAlertaAuth('La contraseña debe tener al menos 6 caracteres.');
+            return;
+        }
+
+        const textoOriginal = btnSubmit ? btnSubmit.innerHTML : '';
+        if (btnSubmit) {
+            btnSubmit.innerHTML = '<span>Creando cuenta...</span>';
+            btnSubmit.disabled = true;
+        }
+
+        try {
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    peso: peso ? parseFloat(peso) : null,
+                    estatura: estatura ? parseFloat(estatura) : null,
+                    edad: edad ? parseFloat(edad) : null
+                })
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.exito) {
+                cerrarModalAuth();
+                formRegistro.reset();
+                actualizarUIUsuario(data.usuario);
+                await cargarPerfilUsuario();
+                mostrarToast('🎉 ¡Cuenta creada con éxito! Bienvenido a MIKHUCHIYNCA.', 'success');
+            } else {
+                mostrarAlertaAuth(data.error || 'No se pudo crear la cuenta.');
+            }
+        } catch (error) {
+            mostrarAlertaAuth('Error de conexión con el servidor.');
+        } finally {
+            if (btnSubmit) {
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
+            }
+        }
+    });
+}
+
+// Lógica de cierre de sesión (Logout)
+if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener('click', async () => {
+        try {
+            await fetch('/api/logout');
+            actualizarUIUsuario(null);
+            mostrarToast('Has cerrado sesión correctamente.', 'info');
+        } catch (err) {
+            console.error('Error al cerrar sesión:', err);
+        }
+    });
+}
+
+// Verificar sesión al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    cargarPerfilUsuario();
+});
+
+// ==========================================
+// 7. REGISTRO DEL SERVICE WORKER (PWA)
+// ==========================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('Service Worker registrado con éxito. Ámbito:', registration.scope);
+            })
+            .catch((error) => {
+                console.error('Error al registrar el Service Worker:', error);
+            });
+    });
 }
