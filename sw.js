@@ -1,11 +1,14 @@
-const CACHE_NAME = 'mikhuchiynca-v2';
+const CACHE_NAME = 'mikhuchiynca-v11';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/style.css',
-  '/app.js?v=100002',
-  '/preferences.js?v=1',
-  '/export.js?v=1'
+  '/app.js?v=100009',
+  '/preferences.js?v=2',
+  '/export.js?v=1',
+  '/catalog.js?v=1',
+  '/history.js?v=1',
+  '/superalimentos_peru.json'
 ];
 
 // Instalación: Precaché de activos estáticos

@@ -37,6 +37,38 @@ const btnQuitarImg  = document.getElementById('quitar-img');
 let base64Image   = null;
 let imageMimeType = null;
 
+// ==========================================
+// PROTECCIÓN CSRF — token por sesión para mutaciones
+// ==========================================
+const fetchNativo = window.fetch.bind(window);
+let tokenCsrf = null;
+let promesaCsrf = null;
+try {
+    promesaCsrf = fetchNativo('/api/csrf', { credentials: 'same-origin' })
+        .then((res) => res.json())
+        .then((data) => { tokenCsrf = (data && data.csrf_token) ? data.csrf_token : null; })
+        .catch(() => { tokenCsrf = null; });
+} catch (error) { tokenCsrf = null; }
+
+async function fetchProtegido(url, options) {
+    let nuevaOpciones = options || {};
+    const metodo = String(nuevaOpciones.method || 'GET').toUpperCase();
+    const muta = !['GET', 'HEAD', 'OPTIONS'].includes(metodo);
+    if (muta) {
+        try { await promesaCsrf; } catch (error) { /* se sigue, el backend decidirá */ }
+        if (tokenCsrf) {
+            const headers = new Headers(nuevaOpciones.headers || {});
+            headers.set('X-CSRF-Token', tokenCsrf);
+            nuevaOpciones = Object.assign({}, nuevaOpciones, { headers: headers });
+        }
+    }
+    return fetchNativo(url, nuevaOpciones);
+}
+
+window.fetch = function (url, options) {
+    return fetchProtegido(url, options);
+};
+
 function mostrarIndicadorEscribiendo() {
     const idCarga = 'carga-' + Date.now();
     const indicador = document.createElement('p');
@@ -137,6 +169,98 @@ function enviarSugerencia(texto) {
     enviarMensajeChat(texto);
 }
 // ==========================================
+// PESTAÑAS (TABS) — Mi Plan | Plan Familiar | Superalimentos
+// ==========================================
+const PANELES_POR_TAB = {
+    plan: ['#nutritionForm', '#result'],
+    familiar: ['#seccion-familiar', '#resultado-familiar'],
+    superalimentos: ['#contenedor-superalimentos']
+};
+
+function mostrarPanelPestaña(nombre) {
+    Object.keys(PANELES_POR_TAB).forEach((clave) => {
+        document.querySelectorAll(PANELES_POR_TAB[clave]).forEach((el) => {
+            const mostrar = (clave === nombre);
+
+            if (el.id === 'seccion-familiar') {
+                const resultadoFamiliar = document.getElementById('resultado-familiar');
+                const resultadoVisible = !!(resultadoFamiliar && !resultadoFamiliar.classList.contains('hidden'));
+                el.style.display = (mostrar && !resultadoVisible) ? '' : 'none';
+            } else {
+                el.classList.toggle('hidden', !mostrar);
+            }
+        });
+    });
+}
+
+function activarPestaña(nombre, conFocus) {
+    conFocus = conFocus === undefined ? true : false;
+    let botonActivo = null;
+    document.querySelectorAll('.tab-btn').forEach((boton) => {
+        const activo = boton.dataset.tab === nombre;
+        boton.classList.toggle('active', activo);
+        boton.setAttribute('aria-selected', activo ? 'true' : 'false');
+        if (activo) botonActivo = boton;
+    });
+    mostrarPanelPestaña(nombre);
+    if (conFocus && botonActivo && typeof botonActivo.focus === 'function') {
+        botonActivo.focus({ preventScroll: true });
+    }
+}
+
+document.querySelectorAll('.tab-btn').forEach((boton) => {
+    boton.addEventListener('click', () => activarPestaña(boton.dataset.tab));
+});
+
+const contenedorTabs = document.getElementById('tabs-plan');
+if (contenedorTabs) {
+    contenedorTabs.addEventListener('keydown', (evento) => {
+        const botones = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+        const indiceActual = botones.indexOf(document.activeElement);
+        let indiceDestino = -1;
+
+        if (evento.key === 'ArrowRight') {
+            indiceDestino = (indiceActual + 1 + botones.length) % botones.length;
+        } else if (evento.key === 'ArrowLeft') {
+            indiceDestino = (indiceActual - 1 + botones.length) % botones.length;
+        } else if (evento.key === 'Home') {
+            indiceDestino = 0;
+        } else if (evento.key === 'End') {
+            indiceDestino = botones.length - 1;
+        }
+
+        if (indiceDestino !== -1) {
+            evento.preventDefault();
+            const destino = botones[indiceDestino];
+            activarPestaña(destino.dataset.tab, false);
+            destino.focus({ preventScroll: true });
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    activarPestaña('plan', false);
+});
+
+const btnCtaPlan = document.getElementById('cta-plan');
+if (btnCtaPlan) {
+    btnCtaPlan.addEventListener('click', () => {
+        activarPestaña('plan');
+        const formulario = document.getElementById('nutritionForm');
+        if (formulario) formulario.scrollIntoView({ behavior: 'smooth' });
+    });
+}
+
+const btnCtaCatalogo = document.getElementById('cta-catalogo');
+if (btnCtaCatalogo) {
+    btnCtaCatalogo.addEventListener('click', () => {
+        activarPestaña('superalimentos');
+        const contenedor = document.getElementById('contenedor-superalimentos');
+        if (contenedor) contenedor.scrollIntoView({ behavior: 'smooth' });
+    });
+}
+
+// ==========================================
 // 3. FORMULARIO: GENERAR PLAN NUTRICIONAL INDIVIDUAL
 // ==========================================
 const nutritionForm = document.getElementById('nutritionForm');
@@ -157,6 +281,10 @@ if (nutritionForm) {
         const actividad = parseFloat(document.getElementById('activity')?.value) || 1.2;
         const region = document.getElementById('region')?.value || 'Costa';
         const health_history = document.getElementById('health_history')?.value || 'Ninguno';
+        const presupuesto = document.getElementById('presupuesto')?.value || 'Económico';
+        const tiempo_cocina = document.getElementById('tiempo_cocina')?.value || '30 min';
+        const comidas_al_dia = parseInt(document.getElementById('comidas_al_dia')?.value, 10) || 4;
+        const alergias = (document.getElementById('alergias')?.value || '').trim();
 
         // 2. Calculamos el IMC
         const imc = estatura > 0 ? (peso / Math.pow(estatura / 100, 2)).toFixed(1) : 0;
@@ -187,6 +315,10 @@ if (nutritionForm) {
                     actividad: actividad,
                     region: region,
                     health_history: health_history,
+                    presupuesto: presupuesto,
+                    tiempo_cocina: tiempo_cocina,
+                    comidas_al_dia: comidas_al_dia,
+                    alergias: alergias,
                     imc: imc
                 })
             });
@@ -199,6 +331,7 @@ if (nutritionForm) {
                     document.getElementById('menuSections').innerHTML = data.html;
                     resultDiv.scrollIntoView({ behavior: 'smooth' });
                 }
+                window.dispatchEvent(new CustomEvent('historial-actualizada', { detail: { tipo: 'individual', planId: data.historial_id || null } }));
                 // Si el usuario tiene sesión activa, actualizar su perfil en la BD
                 if (typeof guardarPerfilActualizado === 'function') {
                     guardarPerfilActualizado({ peso, estatura, edad });
@@ -437,6 +570,7 @@ if (btnGenerarFamiliar) {
 
             if (datos.exito) {
                 renderizarResultadoFamiliar(datos, miembros);
+                window.dispatchEvent(new CustomEvent('historial-actualizada', { detail: { tipo: 'familiar', planId: datos.historial_id || null } }));
             } else {
                 const msg = datos.error || 'Error desconocido';
                 if (msg.includes('503') || msg.toLowerCase().includes('quota') || msg.toLowerCase().includes('overloaded')) {
@@ -609,6 +743,8 @@ function actualizarUIUsuario(perfil) {
         if (usuarioBadge) usuarioBadge.classList.add('hidden');
         if (userDisplayEmail) userDisplayEmail.textContent = '';
     }
+
+    window.dispatchEvent(new CustomEvent('usuario-actualizada', { detail: perfil }));
 }
 
 // Obtener datos del perfil actual desde el backend
@@ -749,7 +885,7 @@ if (formRegistro) {
         }
 
         if (password.length < 6) {
-            mostrarAlertaAuth('La contraseña debe tener al menos 6 caracteres.');
+            mostrarAlertaAuth('La contraseña debe tener al menos 8 caracteres.');
             return;
         }
 

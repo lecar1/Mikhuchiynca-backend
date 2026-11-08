@@ -53,11 +53,16 @@
             <p class="tagline">Planes nutricionales personalizados con superalimentos Peruanos</p>
         </header>
         <main>
+        <nav class="tabs" id="tabs-plan" role="tablist" aria-label="Secciones principales">
+            <button type="button" class="tab-btn active" data-tab="plan" id="tab-plan" role="tab" aria-selected="true">Mi Plan</button>
+            <button type="button" class="tab-btn" data-tab="familiar" id="tab-familiar" role="tab" aria-selected="false">Plan Familiar</button>
+            <button type="button" class="tab-btn" data-tab="superalimentos" id="tab-superalimentos" role="tab" aria-selected="false">Superalimentos</button>
+        </nav>
         <div class="cta-container" style="margin: 2.5rem 0;">
-            <button type="button" class="btn-primary" onclick="document.getElementById('nutritionForm').scrollIntoView({behavior: 'smooth'});">
+            <button type="button" class="btn-primary" id="cta-plan">
                 Generar mi plan gratis
             </button>
-            <button type="button" class="btn-secondary" onclick="document.getElementById('contenedor-superalimentos').scrollIntoView({behavior: 'smooth'});">
+            <button type="button" class="btn-secondary" id="cta-catalogo">
                 Conoce los superalimentos
             </button>
         </div>
@@ -182,6 +187,65 @@
                         <option value="1.9">Muy intenso (entrenamiento 2x/día)</option>
                     </select>
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="presupuesto">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                <line x1="2" y1="10" x2="22" y2="10"/>
+                            </svg>
+                            Presupuesto
+                        </label>
+                        <select id="presupuesto" name="presupuesto">
+                            <option value="Económico" selected>Económico</option>
+                            <option value="Moderado">Moderado</option>
+                            <option value="Flexible">Flexible</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tiempo_cocina">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            Tiempo de cocina
+                        </label>
+                        <select id="tiempo_cocina" name="tiempo_cocina">
+                            <option value="15 min">15 min por comida</option>
+                            <option value="30 min" selected>30 min por comida</option>
+                            <option value="45 min">45 min por comida</option>
+                            <option value="60+ min">60 min o más</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="comidas_al_dia">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                                <path d="M7 2v20"/>
+                                <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3z"/>
+                            </svg>
+                            Comidas al día
+                        </label>
+                        <select id="comidas_al_dia" name="comidas_al_dia">
+                            <option value="3">3 comidas</option>
+                            <option value="4" selected>4 comidas</option>
+                            <option value="5">5 comidas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alergias">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Alergias o intolerancias
+                        </label>
+                        <input type="text" id="alergias" name="alergias" maxlength="160" placeholder="Ej. maní, lactosa, gluten" autocomplete="off">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label style="color: white; font-size: 0.9rem; margin-top: 15px;">📍 ¿De qué región quieres tu dieta?</label>
                     <select id="region" style="width: 100%; padding: 10px; border-radius: 5px; margin-top: 5px; background: #1a2639; color: white; border: 1px solid #2c3e50;">
@@ -271,6 +335,22 @@
                 <div class="superfoods-recommendation" id="superfoodsRecommendation"></div>
             </div>
             
+            <!-- SECCIÓN DE HISTORIAL DE PLANES -->
+            <section id="seccion-historial" class="historial-section hidden" aria-labelledby="historial-titulo">
+                <div class="historial-header">
+                    <div>
+                        <h2 id="historial-titulo">📚 Mi historial de planes</h2>
+                        <p class="historial-subtitulo">Tus planes guardados de forma privada en tu cuenta. Solo tú puedes verlos.</p>
+                    </div>
+                    <button type="button" id="btn-recargar-historial" class="btn-secondary historial-refresh" title="Actualizar historial">
+                        Actualizar
+                    </button>
+                </div>
+                <div id="historial-lista" class="historial-lista" aria-live="polite">
+                    <p class="historial-vacio">Cargando tus planes...</p>
+                </div>
+            </section>
+
             <!-- SECCIÓN DE SUPERALIMENTOS -->
             <div id="contenedor-superalimentos" class="grid-alimentos"></div>
             
@@ -355,7 +435,7 @@
                 </div>
                 <div class="auth-form-group">
                     <label for="registro-password">Contraseña</label>
-                    <input type="password" id="registro-password" placeholder="Mínimo 6 caracteres" minlength="6" required autocomplete="new-password">
+                    <input type="password" id="registro-password" placeholder="Mínimo 8 caracteres" minlength="8" required autocomplete="new-password">
                 </div>
                 <div class="auth-form-row">
                     <div class="auth-form-group">
@@ -382,8 +462,10 @@
         </div>
     </div>
 
-    <script src="/app.js?v=100002"></script>
-    <script src="/preferences.js?v=1"></script>
+    <script src="/app.js?v=100009"></script>
+    <script src="/preferences.js?v=2"></script>
     <script src="/export.js?v=1"></script>
+    <script src="/catalog.js?v=1"></script>
+    <script src="/history.js?v=1"></script>
 </body>
 </html>

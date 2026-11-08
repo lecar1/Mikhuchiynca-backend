@@ -17,6 +17,9 @@
     const ACTIVIDADES = [1.2, 1.375, 1.55, 1.725, 1.9];
     const OBJETIVOS = ['Ganar masa muscular', 'Perder grasa', 'Mantener peso'];
     const ANTECEDENTES = ['Ninguno', 'Diabetes', 'Hipertensión', 'Obesidad'];
+    const PRESUPUESTOS = ['Económico', 'Moderado', 'Flexible'];
+    const TIEMPOS_COCINA = ['15 min', '30 min', '45 min', '60+ min'];
+    const COMIDAS_AL_DIA = [3, 4, 5];
 
     let aplicadoEnEstaCarga = false;
 
@@ -55,6 +58,17 @@
         if (typeof datos.region === 'string' && REGIONES.includes(datos.region)) {
             limpio.region = datos.region;
         }
+
+        if (typeof datos.presupuesto === 'string' && PRESUPUESTOS.includes(datos.presupuesto)) {
+            limpio.presupuesto = datos.presupuesto;
+        }
+
+        if (typeof datos.tiempo_cocina === 'string' && TIEMPOS_COCINA.includes(datos.tiempo_cocina)) {
+            limpio.tiempo_cocina = datos.tiempo_cocina;
+        }
+
+        const comidas = Number(datos.comidas_al_dia);
+        if (COMIDAS_AL_DIA.includes(comidas)) limpio.comidas_al_dia = comidas;
 
         if (typeof datos.health_history === 'string' && ANTECEDENTES.includes(datos.health_history)) {
             limpio.health_history = datos.health_history;
@@ -150,9 +164,13 @@
             genero: valor('gender'),
             objetivo: valor('goal'),
             actividad: valor('activity'),
-            region: valor('region')
+            region: valor('region'),
+            presupuesto: valor('presupuesto'),
+            tiempo_cocina: valor('tiempo_cocina'),
+            comidas_al_dia: valor('comidas_al_dia')
         };
 
+        // Las alergias son un dato de salud: no se guardan en localStorage.
         if (saludOptInActivo()) {
             datos.health_history = valor('health_history');
         }
@@ -198,6 +216,9 @@
         if (asignarSelect('gender', datos.genero)) aplicado = true;
         if (asignarSelect('activity', datos.actividad)) aplicado = true;
         if (asignarSelect('region', datos.region)) aplicado = true;
+        if (asignarSelect('presupuesto', datos.presupuesto)) aplicado = true;
+        if (asignarSelect('tiempo_cocina', datos.tiempo_cocina)) aplicado = true;
+        if (asignarSelect('comidas_al_dia', datos.comidas_al_dia)) aplicado = true;
 
         if (datos.health_history) {
             const el = document.getElementById('health_history');
@@ -285,6 +306,18 @@
             const region = document.getElementById('region');
             if (region) region.value = 'Costa';
 
+            const presupuesto = document.getElementById('presupuesto');
+            if (presupuesto) presupuesto.value = 'Económico';
+
+            const tiempoCocina = document.getElementById('tiempo_cocina');
+            if (tiempoCocina) tiempoCocina.value = '30 min';
+
+            const comidas = document.getElementById('comidas_al_dia');
+            if (comidas) comidas.value = '4';
+
+            const alergias = document.getElementById('alergias');
+            if (alergias) alergias.value = '';
+
             const antecedentes = document.getElementById('health_history');
             if (antecedentes) antecedentes.value = 'Ninguno';
 
@@ -310,7 +343,7 @@
     function activarAutoGuardado() {
         const guardarFormulario = () => guardar(leerFormulario());
 
-        ['gender', 'activity', 'region', 'health_history'].forEach((id) => {
+        ['gender', 'activity', 'region', 'health_history', 'presupuesto', 'tiempo_cocina', 'comidas_al_dia'].forEach((id) => {
             const el = document.getElementById(id);
             if (el) el.addEventListener('change', guardarFormulario);
         });
